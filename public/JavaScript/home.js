@@ -1,0 +1,1 @@
+console.log("safer than a bish");
