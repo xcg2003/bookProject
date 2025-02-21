@@ -7,6 +7,10 @@ const port = 3000;
 const __filename = fileURLToPath(import.meta.url); // get the name of the file
 const __dirname = path.dirname(__filename); // get the name of the directory
 
+// Serve static files from the "public" folder
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'pubic/CSS')));
+
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, '/public/home.html'));
 });
