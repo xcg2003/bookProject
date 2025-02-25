@@ -21,30 +21,27 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.get("/", (req, res) => {
-    res.render("home");
+    res.render("login");
 });
 
 app.post("/", (req,res) =>{
     const data = req.body;
     const password = process.env.HOME_PASSWORD;
     const username = process.env.HOME_USERNAME;
-    if(username != data.username && username != data.password)
+    if(username !== data.username || password !== data.password)
     {
-        console.log("Incorrect Username and password");
-    }
-    else if(password != data.password){
-        console.log("Incorrect password");
-    }
-    else if(username != data.username){
-        console.log("Incorrect username");
+        console.log("Incorrect Username or password");
+        res.render("login", {error: true});
+        return;
     }
     else{
-        console.log("Correct Creds");
+        console.log("login Successful");
+        res.redirect("/homepage");
     }
 });
 
 app.get("/homepage", (req, res) => {
-    res.send("home page here, user can search through there database of books");
+    res.render("home");
 });
 
 app.get("/bookMark", (req, res) => {
