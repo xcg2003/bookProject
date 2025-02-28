@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="CSS/login.css"/>
+    <link  type="text/css" href="CSS/login.css"/>
     <title>login</title>
 </head>
 <body>
     <h1> Welcome to the book website</h1>
-    <% if (typeof error !== 'undefined' && error) { %>
-        <p style="color: red;">Invalid username or password.</p>
-    <% } %>
     <div id="loginForm">
         <form method="post">
             <label for="Username">Username: </label>
             <input type="text" id="username" name="username"><br><br>
             <label for="Password">Password: </label>
             <input type="password" id="password" name="password"><br><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" onclick="checkCredtials()">
         </form>
+
+        <div id="JavaScript">
+
+        </div>
         
     </div>
     
 
 
-    <script src="JavaScript/home.js"></script>
+    <script src="JavaScript/login.js"></script>
 </body>
 </html>

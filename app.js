@@ -16,12 +16,15 @@ app.use(express.static(path.join(__dirname, 'public/CSS')));
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
+// allows the use of static html files
+app.use(express.static(__dirname + '/public'));
+
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.get("/", (req, res) => {
-    res.render("login");
+    res.sendFile(path.join(__dirname, "public/login.html"));
 });
 
 app.post("/", (req,res) =>{
@@ -30,8 +33,10 @@ app.post("/", (req,res) =>{
     const username = process.env.HOME_USERNAME;
     if(username !== data.username || password !== data.password)
     {
+        {success: false}; 
+        {message: "Incorrect Username or password"};
+        
         console.log("Incorrect Username or password");
-        res.render("login", {error: true});
         return;
     }
     else{
@@ -45,11 +50,11 @@ app.get("/homepage", (req, res) => {
 });
 
 app.get("/bookMark", (req, res) => {
-    res.send("display users book marks here");
+    res.render("bookmark");
 });
 
-app.get("/bookSearch", (req, res) => {
-    res.send("user will search books on this page using googlebooks API");
+app.get("/searchBook", (req, res) => {
+    res.render("searchBook");
 });
 
 
