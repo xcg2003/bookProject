@@ -3,6 +3,7 @@ import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
 import dotenv  from 'dotenv'; // To use env variables
+import pool from "./db.js"; // import the database.
 dotenv.config();
 const app = express();
 const port = process.env.PORT;
@@ -35,7 +36,7 @@ app.post("/", (req,res) =>{
     {
         {success: false}; 
         {message: "Incorrect Username or password"};
-        
+
         console.log("Incorrect Username or password");
         return;
     }
